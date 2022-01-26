@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pymail", # Replace with your own username
+    name="pymail", 
     version="1.0.0",
     author="Samson Ilemobayo",
     author_email="ilemobayosamson@gmail.com",
@@ -20,7 +20,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     
     ],
-    python_requires='3.x.x',
+    python_requires='3.x',
     install_requires=[
         "Jinja2",
     ],

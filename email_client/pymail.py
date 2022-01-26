@@ -7,12 +7,10 @@ import pathlib
 from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoader
 
 
+
 """Declare function to get Email configuration"""
 def clients(email_host, email_port, email_user, email_pass, email_protocol, email_sender):
-    if email_protocol is not "SSL":
-        print("Email Protocol must be either SSL or TLS")
-        return False
-    else:
+    if email_protocol == "SSL":
         data = {
             "host": email_host,
             "port": email_port,
@@ -22,29 +20,41 @@ def clients(email_host, email_port, email_user, email_pass, email_protocol, emai
             "sender": email_sender
         }
         return data
+    elif email_protocol == "TLS":
+        data = {
+            "host": email_host,
+            "port": email_port,
+            "username": email_user,
+            "password": email_pass,
+            "protocol": email_protocol,
+            "sender": email_sender
+        }
+        return data
+    else:
+        print("Email Protocol must be either SSL or TLS")
+        pass
 
 
-
-class EmailBackEnd:
+class Email:
     
-    env = Environment(
-        loader=PackageLoader('template', 'email'),
-        autoescape=select_autoescape(['html', 'xml'])
-    )
+    def load_template(self, html_template, data_load):
+        env = Environment(
+            loader=PackageLoader('template', 'email'),
+            autoescape=select_autoescape(['html', 'xml'])
+        )
     
-    def sendEmail(self, credential, html, receiver_email, subject):
-        d = self.env.get_template(html)
-        # data = clients()
-        template = d.render({
-            'name':'samson',
-            'amount': '1000'
-        })
+        d = env.get_template(html_template)
+        template = d.render(dict(data_load))
+        return template
+    
+    def sendEmail(self, credential, template_data, receiver_email, subject):
+        
         msg = MIMEMultipart()
         msg['From'] = credential['sender']
         msg['To'] = receiver_email
         msg['Subject'] = subject
 
-        msg.attach(MIMEText(template, 'html'))
+        msg.attach(MIMEText(template_data, 'html'))
 
     
         # msg.attach(part)
