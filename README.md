@@ -1,6 +1,6 @@
-# pymail
+# pymailer
 
-PyMail is a python wrapper that can be used to send beautiful email in any python base application. it allow developers to pass in their html template and the wrapper will render it and send the beautiful template out the reciepient. It can also be used to send attachements with email sent to reciepient.
+er is a python wrapper that can be used to send beautiful email in any python base application. it allow developers to pass in their html template and the wrapper will render it and send the beautiful template out the reciepient. It can also be used to send attachements with email sent to reciepient.
 
                                             DOCUMENTATION
 
@@ -8,11 +8,11 @@ INSTALLATION
 
 We have to install the library into our virtual environment and we can do that by using the below command.
 
-        pip install pymail
+        pip install pymailer
 
 or
 
-        pip3 install pymail
+        pip3 install pymailer
 
 
 USAGE

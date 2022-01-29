@@ -5,11 +5,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pymail", 
+    name="pymailer", 
     version="1.0.0",
     author="Samson Ilemobayo",
     author_email="ilemobayosamson@gmail.com",
-    description="Python Library to send email with template and send files via email",
+    description="A Python Library to send email with template and and attachment via email",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/finedevsam/pymail.git",
