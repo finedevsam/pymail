@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pymailer", 
-    version="1.0.0",
+    name="pymailclient", 
+    version="1.0.1",
     author="Samson Ilemobayo",
     author_email="ilemobayosamson@gmail.com",
     description="A Python Library to send email with template and and attachment via email",
