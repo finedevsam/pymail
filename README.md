@@ -52,7 +52,8 @@ Load the HTML Template in the function and pass in the data you want to pass to 
                       template_data = send.load_template(html, {'name':'samson', 'amount':'1000'})
 
 In our html template, we can now get the value of the data passed from python by using the the jinja2 pattern. ie 
-                        {{name}} {{amount}}
+
+                            {{name}} {{amount}}
 
 Then we can now call the function to send the email by using the below function.
 
