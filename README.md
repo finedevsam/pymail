@@ -1,6 +1,6 @@
 # pymail
 
-PyMail is a python wrapper that can be use to send beautiful email in any python base application. it allow developers to pass in their html template and the wrapper will render it and send the beautiful template out the reciepient. 
+PyMail is a python wrapper that can be used to send beautiful email in any python base application. it allow developers to pass in their html template and the wrapper will render it and send the beautiful template out the reciepient. It can also be used to send attachements with email sent to reciepient.
 
                                             DOCUMENTATION
 
@@ -28,19 +28,22 @@ import all the functions
 
                       from email_client.pymail import clients, Email
 
+Initiate the class
+
+                      send = Email()
+
 Supply all the SMTP credentials that will be used to send the email out.
 
                       credential = clients(
                             email_host='smtp.gmail.com',
                             email_port='587',
-                            email_user='sam.ilemobayo@gmail.com',
-                            email_pass='Victoria@1992',
+                            email_user='email',
+                            email_pass='password',
                             email_protocol='TLS',
-                            email_sender='sam.ilemobayo@gmail.com'
+                            email_sender='sender'
                         )
 
 
-                      send = Email()
 
 Declare your HTML Template
 
@@ -51,9 +54,16 @@ Load the HTML Template in the function and pass in the data you want to pass to 
 
                       template_data = send.load_template(html, {'name':'samson', 'amount':'1000'})
 
-In our html template, we can now get the value of the data passed from python by using the the jinja2 pattern. ie 
+In the html template, you can now get the value of the data passed from python by using the the jinja2 pattern. ie 
 
                             {{name}} {{amount}}
+
+            <!DOCTYPE html">
+            <html xmlns="http://www.w3.org/1999/xhtml">
+                  <h1>Hi {{name}},</h1>
+                  <strong>Amount:</strong> {{amount}}
+            </html>
+
 
 Then we can now call the function to send the email by using the below function.
 
@@ -81,7 +91,49 @@ SEND EMAIL WITH ATTACHED FILE
                         )
 
 
+
+FULL USAGE
+
+                    from email_client.pymail import clients, Email
+
+                    send = Email()
+
+                    credential = clients(
+                            email_host='smtp.gmail.com',
+                            email_port='587',
+                            email_user='email',
+                            email_pass='password',
+                            email_protocol='TLS',
+                            email_sender='sender'
+                        )
+                      html = 'templatename.html'
+                      template_data = send.load_template(html, {'name':'samson', 'amount':'1000'})
+
+                    //Send without files/attachement //
+
+                    send.sendEmail(
+                        credential, 
+                        template_data, 
+                        receiver_email='reciever@gmail.com', 
+                        subject="Python Test", 
+                        bcc='test@gmail.com, test2@gmail.com'
+                        )
+
+                    
+
+                    // Send with attachement //
+
+                    send.sendEmailWithFile(
+                        credential, 
+                        template_data, 
+                        subject="Python Test", 
+                        receiver_email='reciever@gmail.com',
+                        pathToFile='path to file/Report.pdf', 
+                        docName='test', 
+                        bcc='test@gmail.com, test2@gmail.com'
+                        )
+
 NOTE
 
-If you dont want to use bcc, kindly set it to None. ie *bcc=None.
+If you dont want to use bcc, kindly set it to None. ie bcc=None. Also the email protocol must be either SSL or TLS depending the protocol you are using.
         
